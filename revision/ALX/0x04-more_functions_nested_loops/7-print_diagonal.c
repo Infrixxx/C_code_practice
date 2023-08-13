@@ -7,6 +7,7 @@
 void print_diagonal(int n)
 {
     int a;
+    int b;
 
     if (n == 0)
     {
@@ -14,18 +15,21 @@ void print_diagonal(int n)
     }
     else
     {
-        for(a = 1; a <= n; a++)
+        for (a = 1; a <= n; a++) //loop, to increase spaces and create output
             {
-                if (a == n)
-                {
-                    _putchar(' ');
-                    _putchar('\\');
-                    _putchar('\n');
-                }
-                else
-                {
-                    _putchar(' ');
-                }
+                for(b = 1; b <= a; b++) //loop to generate output
+                    {
+                        if (a == b)
+                        {
+                            _putchar(' ');
+                            _putchar('\\');
+                            _putchar('\n');
+                        }
+                        else
+                        {
+                            _putchar(' ');
+                        }
+                    }
             }
     }
 }
