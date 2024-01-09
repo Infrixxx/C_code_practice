@@ -9,46 +9,42 @@
  * Return: Always 0 (Success)
  */
 
-int _atoi(char *s) { // Corrected function signature
-
-    int i = 0;
-    int len = 0;
-    int sign = 1; // Variable to store the sign of the number
+int _atoi(char *s) {
+    int sign = 1;
     int result = 0;
-    
-    // Calculate the length of the string
-    while (s[len] != '\0') {
-        len++;
+    int power = 1; // Initialize power to 1 for place value
+
+    // Skip leading whitespace characters
+    while (*s == ' ' || *s == '\n' || *s == '\t') {
+        s++;
     }
 
-    // Skip any leading whitespace characters
-    while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n') {
-        i++;
-    }
-
-    // Check for the sign of the number
-    if (s[i] == '-') {
+    // Check for sign
+    if (*s == '-') {
         sign = -1;
-        i++;
-    } 
-    else if (s[i] == '+') 
-    {
-        // No need to change the sign explicitly for positive numbers
-        i++;
+        s++;
+    } else if (*s == '+') {
+        s++;
     }
 
-    // Convert characters to integer
-    while (i < len && s[i] >= '0' && s[i] <= '9')
-    {
-        int digit = s[i] - '0'; // Convert character to integer
-        
-        // Update result by multiplying by 10 and adding the new digit
-        result = result * 10 + digit;
-        
-        i++; // Move to the next character
+    // Calculate power for place value
+    while (*s >= '0' && *s <= '9') {
+        power *= 10;
+        s++;
     }
 
-    return (result * sign);
+    // Reset pointer to the beginning of numeric part of string
+    s--;
+
+    // Process digits
+    while (*s >= '0' && *s <= '9') {
+        int digit = *s - '0';
+        result += digit * power; // Multiply digit by its place value
+        power /= 10; // Move to the next lower place value
+        s--;
+    }
+
+    return result * sign;
 }
 
 int main(int argc __attribute__((unused)), char *argv[])
