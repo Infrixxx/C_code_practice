@@ -30,8 +30,10 @@ int main()
 	
 	for(i=0;i<size;i++)
 	{
-		printf("%p\n",&pr[0]);
+		printf("%p\n",&pr[i]);
 	}
 
+	free(pr);
+	
 	return 0;
 }	
