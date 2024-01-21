@@ -12,14 +12,14 @@
 int _atoi(char *s) {
     int sign = 1;
     int result = 0;
-    int power = 1; // Initialize power to 1 for place value
+    int power = 1; /* Initialize power to 1 for place value*/
 
-    // Skip leading whitespace characters
+    /*Skip leading whitespace characters*/
     while (*s == ' ' || *s == '\n' || *s == '\t') {
         s++;
     }
 
-    // Check for sign
+    /*Check for sign*/
     if (*s == '-') {
         sign = -1;
         s++;
@@ -27,20 +27,20 @@ int _atoi(char *s) {
         s++;
     }
 
-    // Calculate power for place value
+    /*Calculate power for place value*/
     while (*s >= '0' && *s <= '9') {
         power *= 10;
         s++;
     }
 
-    // Reset pointer to the beginning of numeric part of string
+    /*Reset pointer to the beginning of numeric part of string*/
     s--;
 
-    // Process digits
+    /*Process digits*/
     while (*s >= '0' && *s <= '9') {
         int digit = *s - '0';
-        result += digit * power; // Multiply digit by its place value
-        power /= 10; // Move to the next lower place value
+        result += digit * power; /*Multiply digit by its place value*/
+        power /= 10; /*Move to the next lower place value*/
         s--;
     }
 
@@ -53,7 +53,7 @@ int main(int argc __attribute__((unused)), char *argv[])
 	int num2=_atoi(argv[2]);
 	int result= num*num2;
 
-	printf("%d",result);
+	printf("%d\n",result);
 
 	return 0;
 }
